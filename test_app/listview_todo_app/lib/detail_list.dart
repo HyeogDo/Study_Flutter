@@ -13,9 +13,10 @@ class _DetailListState extends State<DetailList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Message.bcol,
       appBar: AppBar(
-        title: const Text(
-          "Detail View",
+        title: Text(
+          Message.workList,
         ),
       ),
       body: Center(
@@ -27,9 +28,6 @@ class _DetailListState extends State<DetailList> {
             ),
             const SizedBox(
               height: 50,
-            ),
-            Text(
-              Message.workList
             ),
           ],
         ),

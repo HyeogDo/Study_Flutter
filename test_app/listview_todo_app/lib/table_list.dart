@@ -48,6 +48,8 @@ class _TableListState extends State<TableList> {
                 onTap: () {
                   Message.workList = todoList[position].workList;
                   Message.imagePath = todoList[position].imagePath;
+                  Message.bcol = position % 2 == 0 ? const Color.fromARGB(255, 64, 242, 255) 
+                  : Colors.amber;
                   Navigator.push(
                     context, 
                     MaterialPageRoute(builder: (context) => const DetailList(),));
