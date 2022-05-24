@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:listview_todo_app/view/insert_list.dart';
-import 'package:listview_todo_app/view/table_list.dart';
+import 'package:listview_todo_ex_app/view/insert_list.dart';
+import 'package:listview_todo_ex_app/view/table_list.dart';
 
 void main() {
   runApp(const MyApp());
