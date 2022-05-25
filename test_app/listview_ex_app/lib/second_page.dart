@@ -34,6 +34,8 @@ class _SecondPageState extends State<SecondPage> {
                     setState(() {
                       if ( value.isNotEmpty) {
                         nameController2.text = "${value[0]}${" _ "*(value.length-1)}";
+                      } else {
+                        nameController2.text = "";
                       }
                     });
                   },
