@@ -1,10 +1,11 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:navigator_lamp_switch_app/lamp.dart';
 
 class EditPage extends StatefulWidget {
-  const EditPage({Key? key}) : super(key: key);
+  final bool lampColor;
+  final bool lampState;
+  const EditPage({Key? key, required this.lampColor, required this.lampState}) : super(key: key);
 
   @override
   State<EditPage> createState() => _EditPageState();
@@ -18,8 +19,8 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
-    colSwitch = Lamp.lampCol;
-    onoffSwitch = Lamp.lampState;
+    colSwitch = widget.lampColor;
+    onoffSwitch = widget.lampState;
     if (onoffSwitch) {
       lampOnOff = "On";
     } else {
@@ -84,8 +85,10 @@ class _EditPageState extends State<EditPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                changeImage();
-                Navigator.pop(context);
+                List<bool> result = [];
+                result.add(colSwitch);
+                result.add(onoffSwitch);
+                Navigator.pop(context, result);
               }, 
               child: const Text("OK"),
               ),
@@ -94,19 +97,5 @@ class _EditPageState extends State<EditPage> {
       ),
     );
   }
-  changeImage() {
-    if (!onoffSwitch) {
-      Lamp.lampState = false;
-      Lamp.imagePath = "images/lamp_off.png";
-    } else {
-        Lamp.lampState = true;
-      if (colSwitch) {
-        Lamp.lampCol = true;
-        Lamp.imagePath = "images/lamp_red.png";
-      } else {
-        Lamp.lampCol = false;
-        Lamp.imagePath = "images/lamp_on.png";
-      }
-    }
-  }
+
 }

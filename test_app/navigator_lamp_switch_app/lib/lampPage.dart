@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:navigator_lamp_switch_app/lamp.dart';
+import 'package:navigator_lamp_switch_app/editPage.dart';
 
 class LampPage extends StatefulWidget {
   const LampPage({Key? key}) : super(key: key);
@@ -12,11 +12,14 @@ class LampPage extends StatefulWidget {
 
 class _LampPageState extends State<LampPage> {
   late String imagePath;
+  late bool lampState;
+  late bool lampColor;
 
   @override
   void initState() {
     imagePath = "images/lamp_on.png";
-    Lamp.imagePath = imagePath;
+    lampState = true;
+    lampColor = false;
     super.initState();
   }
   @override
@@ -27,9 +30,22 @@ class _LampPageState extends State<LampPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, "editPage").then((value) => {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return EditPage(lampColor: lampColor, lampState: lampState);
+              },)).then((value) => {
                 setState(() {
-                  imagePath = Lamp.imagePath;
+                  lampColor = value[0];
+                  lampState = value[1];
+                  if (!lampState) {
+                    imagePath = "images/lamp_off.png";
+                  } else {
+                    if (lampColor) {
+                      imagePath = "images/lamp_red.png";
+                    } else {
+                      imagePath = "images/lamp_on.png";
+
+                    }
+                  }
                 })
               });
             }, 
